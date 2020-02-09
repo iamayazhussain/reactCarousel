@@ -12,6 +12,29 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `API`
+
+[
+    {
+        "id": "2",
+        "img": "https:\/\/islengg.ac.in\/images\/slider\/Banner-1.jpg",
+        "title": "title",
+        "author": "Mohammed"
+    },
+    {
+        "id": "1",
+        "img": "https:\/\/islengg.ac.in\/images\/slider\/Banner-1.jpg",
+        "title": "title",
+        "author": "Mohammed"
+    },
+    {
+        "id": "0",
+        "img": "https:\/\/islengg.ac.in\/images\/slider\/Banner-1.jpg",
+        "title": "Big Data - The Future",
+        "author": "S. Kings"
+    }
+]
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
