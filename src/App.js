@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Carousel } from "react-bootstrap";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    images: []
+  };
+
+  componentDidMount() {
+    // #1. First of all you have to fetch the images.
+    fetch("https://islengg.ac.in/app/books.php")
+      .then(response => response.json()) // If it's a JSON response, you have to parse it firstly
+      .then(images => this.setState({ images })); // #2. After that you have to keep the images in the component's state.
+  }
+
+  render() {
+    const { images } = this.state;
+
+    if (!images) return <div>Loading!</div>;
+
+    // #3. Finally, render the `<Carousel />` with the state's images.
+    return (
+      <Carousel>
+        {images.map((image, i) => {
+          return (
+            <Carousel.Item>
+              <img
+                src={image.img}
+                key={"image_" + i + 1}
+                className="img-fluid"
+                alt="Hello"
+              />
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    );
+  }
 }
-
 export default App;
