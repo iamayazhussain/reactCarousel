@@ -9,7 +9,7 @@ class App extends React.Component {
 
   componentDidMount() {
     // #1. First of all you have to fetch the images.
-    fetch("https://islengg.ac.in/app/books.php")
+    fetch(//Replace your API)
       .then(response => response.json()) // If it's a JSON response, you have to parse it firstly
       .then(images => this.setState({ images })); // #2. After that you have to keep the images in the component's state.
   }
