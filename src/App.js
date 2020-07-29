@@ -1,36 +1,41 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Carousel } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import axios from "axios";
 
 class App extends React.Component {
   state = {
-    images: []
+    carousel_list: [],
   };
 
   componentDidMount() {
-    // #1. First of all you have to fetch the images.
-    fetch(//Replace your API)
-      .then(response => response.json()) // If it's a JSON response, you have to parse it firstly
-      .then(images => this.setState({ images })); // #2. After that you have to keep the images in the component's state.
+    axios
+      .get(`https://tranquil-springs-03360.herokuapp.com/json/carousel`)
+      .then(res => {
+        const carousel_list = res.data.carousel_list;
+        this.setState({ carousel_list });
+      });
   }
 
   render() {
-    const { images } = this.state;
+    const { carousel_list } = this.state;
 
-    if (!images) return <div>Loading!</div>;
+    if (!carousel_list || carousel_list === null) return <div>Loading!</div>;
 
-    // #3. Finally, render the `<Carousel />` with the state's imagesssss.
+    // #3. Finally, render the `<Carousel />` with the state's images.
     return (
       <Carousel>
-        {images.map((image, i) => {
+        {carousel_list.map((image, _id) => {
           return (
             <Carousel.Item>
               <img
                 src={image.img}
-                key={"image_" + i + 1}
-                className="img-fluid"
+                key={image._id}
+                className="img-fluid d-block w-100"
                 alt="Hello"
               />
+              <Carousel.Caption>
+                <p>{image.caption}</p>
+              </Carousel.Caption>
             </Carousel.Item>
           );
         })}
