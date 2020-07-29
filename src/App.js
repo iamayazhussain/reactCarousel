@@ -19,7 +19,7 @@ class App extends React.Component {
 
     if (!images) return <div>Loading!</div>;
 
-    // #3. Finally, render the `<Carousel />` with the state's images.
+    // #3. Finally, render the `<Carousel />` with the state's imagesssss.
     return (
       <Carousel>
         {images.map((image, i) => {
